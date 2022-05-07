@@ -47,6 +47,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99563E7E2826A58C00EF6833 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99901774281E4E61005E30D8 /* Book.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99563E7F2826A59200EF6833 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				99901776281E53B8005E30D8 /* BookCell.swift */,
+				99840737282022D500C8B9D8 /* SelectedBookCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		99563E802826A59B00EF6833 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99901778281E5513005E30D8 /* BookListViewController.swift */,
+				9990177A281E555E005E30D8 /* MyPageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		99901754281E45DB005E30D8 = {
 			isa = PBXGroup;
 			children = (
@@ -72,11 +98,9 @@
 				99901769281E45DE005E30D8 /* Assets.xcassets */,
 				9990176B281E45DE005E30D8 /* LaunchScreen.storyboard */,
 				9990176E281E45DE005E30D8 /* Info.plist */,
-				99901774281E4E61005E30D8 /* Book.swift */,
-				99901776281E53B8005E30D8 /* BookCell.swift */,
-				99901778281E5513005E30D8 /* BookListViewController.swift */,
-				9990177A281E555E005E30D8 /* MyPageViewController.swift */,
-				99840737282022D500C8B9D8 /* SelectedBookCell.swift */,
+				99563E7E2826A58C00EF6833 /* Model */,
+				99563E7F2826A59200EF6833 /* Cell */,
+				99563E802826A59B00EF6833 /* Controller */,
 			);
 			path = "MiddleP-Books";
 			sourceTree = "<group>";
