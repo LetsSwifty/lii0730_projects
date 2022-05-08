@@ -99,15 +99,26 @@ extension MyPageViewController: UITableViewDataSource {
 
 extension MyPageViewController {
     @objc func OnClick(_ sender: UIButton) {
-        let deletedBook = self.bookList?.remove(at: sender.tag)
         
-        guard var book = deletedBook else { return }
-        book.isGood = false
-        delegate?.Deleted(book: book)
-        self.tableView.reloadData()
-        
-        if(self.bookList?.count == 0) {
-            self.navigationController?.popViewController(animated: true)
+        let alert = UIAlertController(title: "알림", message: "삭제하시겠습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            let deletedBook = self.bookList?.remove(at: sender.tag)
+            
+            guard var book = deletedBook else { return }
+            book.isGood = false
+            self.delegate?.Deleted(book: book)
+            self.tableView.reloadData()
+            
+            if(self.bookList?.count == 0) {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(okAction)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
+        
     }
 }
