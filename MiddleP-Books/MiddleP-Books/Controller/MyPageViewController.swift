@@ -84,14 +84,14 @@ extension MyPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        guard let bookList = self.bookList else { return UITableViewCell() }
-        let book = bookList[indexPath.row]
-        
-        cell.bookImageView.image = UIImage(named: book.imageURL)
-        cell.titleLabel.text = book.title
-        
-        cell.deleteButton.tag = indexPath.row
-        cell.deleteButton.addTarget(self, action: #selector(OnClick(_:)), for: .touchUpInside)
+//        guard let bookList = self.bookList else { return UITableViewCell() }
+//        let book = bookList[indexPath.row]
+//
+//        cell.bookImageView.image = UIImage(named: book.imageURL)
+//        cell.titleLabel.text = book.title
+//
+//        cell.deleteButton.tag = indexPath.row
+//        cell.deleteButton.addTarget(self, action: #selector(OnClick(_:)), for: .touchUpInside)
         
         return cell
     }
@@ -106,7 +106,7 @@ extension MyPageViewController {
             let deletedBook = self.bookList?.remove(at: sender.tag)
             
             guard var book = deletedBook else { return }
-            book.isGood = false
+//            book.isGood = false
             self.delegate?.Deleted(book: book)
             self.tableView.reloadData()
             

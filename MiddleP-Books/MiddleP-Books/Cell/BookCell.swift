@@ -29,18 +29,18 @@ class BookCell: UITableViewCell {
         
         self.titleLabel.text = item.title
         self.descLabel.text = item.description
-        self.bookImage.image = UIImage(named: item.imageURL)
-        self.starButton.setImage(item.isGood ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)
+        self.bookImage.image = ImageLoader.Load(url: item.image)
+//        self.starButton.setImage(item.isGood ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)
     }
     
     @IBAction func onSelect(_ sender: UIButton) {
-        if var item = self.item, let row = self.row {
-            item.isGood.toggle()
-            
-            self.starButton.setImage(item.isGood ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)
-            
-            delegate?.Select(book: item, row: row)
-            
-        }
+//        if var item = self.item, let row = self.row {
+//            item.isGood.toggle()
+//            
+//            self.starButton.setImage(item.isGood ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)
+//            
+//            delegate?.Select(book: item, row: row)
+//            
+//        }
     }
 }
