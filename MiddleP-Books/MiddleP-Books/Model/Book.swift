@@ -9,12 +9,27 @@ import Foundation
 import UIKit
 
 
-struct Books: Decodable {
+struct Books: Codable {
     var items: [Book]
 }
 
-struct Book: Decodable {
+struct Book: Codable {
     let title: String
     let description: String
     let image: String
+    
+    var _isGood: Bool?
+    var IsGood: Bool {
+        get {
+            if _isGood == nil {
+                return false
+            } else {
+                return _isGood!
+            }
+        }
+        
+        set {
+            _isGood = newValue
+        }
+    }
 }

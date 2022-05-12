@@ -10,6 +10,7 @@ import UIKit
 
 class BookListViewController: UITableViewController {
     var bookList: [Book] = []
+    var likeBookList: [Book] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +49,12 @@ class BookListViewController: UITableViewController {
     }
     
     @IBAction func Move(_ sender: Any) {
-//        guard let myPageVC = self.storyboard?.instantiateViewController(withIdentifier: "MyPage") as? MyPageViewController else { return }
-//        myPageVC.bookList = self.bookList.filter({ book in
-//            book.isGood
-//        })
-//
-//        myPageVC.delegate = self
-//
-//        self.navigationController?.pushViewController(myPageVC, animated: true)
+        guard let myPageVC = self.storyboard?.instantiateViewController(withIdentifier: "MyPage") as? MyPageViewController else { return }
+        myPageVC.bookList = self.bookList.filter({ b in
+            b.IsGood == true
+        })
+        myPageVC.delegate = self
+        self.navigationController?.pushViewController(myPageVC, animated: true)
     }
 }
 
@@ -69,18 +68,16 @@ extension BookListViewController: UISearchBarDelegate {
 }
 
 //MARK: - DeleteDelegate
-extension BookListViewController: DeleteDelegate {
+extension BookListViewController: MyPageVCDelegate {
     func Deleted(book: Book) {
-//        let index = self.bookList.firstIndex { b in
-//            b.title == book.title
-//        }
         
-//        guard let index = index else {
-//            return
-//        }
-//
-//        self.bookList[index] = book
-//        self.tableView.reloadData()
+        let index = self.bookList.firstIndex { b in
+            b.title == book.title
+        }
+
+        guard let index = index else { return }
+        self.bookList[index] = book
+        self.tableView.reloadData()
     }
 }
 
@@ -95,9 +92,9 @@ extension BookListViewController {
             return UITableViewCell()
         }
         cell.item = book
-        cell.row = indexPath.row
         cell.delegate = self
-        cell.setBook()
+        cell.row = indexPath.row
+        cell.setBook(for: book)
 
         return cell
     }
@@ -108,10 +105,9 @@ extension BookListViewController {
 }
 
 //MARK: - 아이템 선택, 해제
-extension BookListViewController: SelectDelegate {
+extension BookListViewController: BookCellDelegate {
     func Select(book: Book, row: Int) {
-//        self.bookList[row] = book
-//        self.tableView.reloadData()
+        self.bookList[row] = book
     }
 }
 

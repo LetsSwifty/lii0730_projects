@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol DeleteDelegate {
+protocol MyPageVCDelegate {
     func Deleted(book: Book)
 }
 
 class MyPageViewController: UIViewController {
     
-    var bookList: [Book]?
+    var bookList: [Book] = []
     
-    var delegate: DeleteDelegate?
+    var delegate: MyPageVCDelegate?
     
     lazy var emptyTextLabel: UILabel = {
         let label = UILabel()
@@ -52,16 +52,12 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let bookList = self.bookList {
-            if bookList.isEmpty {
-                self.emptyTextLabel.isHidden = false
-                self.tableView.isHidden = true
-            } else {
-                self.emptyTextLabel.isHidden = true
-                self.tableView.isHidden = false
-            }
+        if bookList.isEmpty {
+            self.emptyTextLabel.isHidden = false
+            self.tableView.isHidden = true
         } else {
-            NSLog("Error: Optional Not UnWrapping, bookList")
+            self.emptyTextLabel.isHidden = true
+            self.tableView.isHidden = false
         }
         
         layoutSubView()
@@ -74,9 +70,7 @@ class MyPageViewController: UIViewController {
 
 extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let bookList = self.bookList else { return 0 }
-        
-        return bookList.count
+        return self.bookList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,14 +78,11 @@ extension MyPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-//        guard let bookList = self.bookList else { return UITableViewCell() }
-//        let book = bookList[indexPath.row]
-//
-//        cell.bookImageView.image = UIImage(named: book.imageURL)
-//        cell.titleLabel.text = book.title
-//
-//        cell.deleteButton.tag = indexPath.row
-//        cell.deleteButton.addTarget(self, action: #selector(OnClick(_:)), for: .touchUpInside)
+        let book = self.bookList[indexPath.row]
+        cell.titleLabel.text = book.title
+        cell.bookImageView.image = ImageLoader.Load(url: book.image)
+        cell.deleteButton.tag = indexPath.row
+        cell.deleteButton.addTarget(self, action: #selector(OnClick(_:)), for: .touchUpInside)
         
         return cell
     }
@@ -99,25 +90,23 @@ extension MyPageViewController: UITableViewDataSource {
 
 extension MyPageViewController {
     @objc func OnClick(_ sender: UIButton) {
-        
         let alert = UIAlertController(title: "알림", message: "삭제하시겠습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            let deletedBook = self.bookList?.remove(at: sender.tag)
-            
-            guard var book = deletedBook else { return }
-//            book.isGood = false
-            self.delegate?.Deleted(book: book)
+            var deletedBook = self.bookList.remove(at: sender.tag)
+            deletedBook.IsGood = false
+
+            self.delegate?.Deleted(book: deletedBook)
             self.tableView.reloadData()
-            
-            if(self.bookList?.count == 0) {
+
+            if(self.bookList.count == 0) {
                 self.navigationController?.popViewController(animated: true)
             }
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         alert.addAction(okAction)
         alert.addAction(cancel)
-        
+
         self.present(alert, animated: true)
         
     }
