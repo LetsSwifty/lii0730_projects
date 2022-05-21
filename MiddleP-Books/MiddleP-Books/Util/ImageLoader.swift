@@ -10,7 +10,7 @@ import UIKit
 
 
 class ImageLoader {
-    static func Load(url: String) -> UIImage {
+    static func load(url: String) -> UIImage {
         let imageURL = URL(string: url)
         
         guard let imageData = try? Data(contentsOf: imageURL!) else { return UIImage() }

@@ -19,7 +19,7 @@ struct Book: Codable {
     let image: String
     
     var _isGood: Bool?
-    var IsGood: Bool {
+    var isGood: Bool {
         get {
             if _isGood == nil {
                 return false

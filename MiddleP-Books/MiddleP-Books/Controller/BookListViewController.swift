@@ -31,7 +31,7 @@ class BookListViewController: UITableViewController {
     }
     
     private func fetchData(title: String) {
-        let request = APIService.MakeAPIRequest(keyword: title)
+        let request = APIService.makeAPIRequest(keyword: title)
         
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             guard let self = self else { return }
@@ -51,7 +51,7 @@ class BookListViewController: UITableViewController {
     @IBAction func Move(_ sender: Any) {
         guard let myPageVC = self.storyboard?.instantiateViewController(withIdentifier: "MyPage") as? MyPageViewController else { return }
         myPageVC.bookList = self.bookList.filter({ b in
-            b.IsGood == true
+            b.isGood == true
         })
         myPageVC.delegate = self
         self.navigationController?.pushViewController(myPageVC, animated: true)

@@ -10,6 +10,8 @@
 		9911C7F12829636300A3C5C4 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9911C7F02829636300A3C5C4 /* APIService.swift */; };
 		99840738282022D500C8B9D8 /* SelectedBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99840737282022D500C8B9D8 /* SelectedBookCell.swift */; };
 		998D0603282AB45B004D51C0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D0602282AB45B004D51C0 /* ImageLoader.swift */; };
+		998DF2352838E71D0039224C /* Extensions+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998DF2342838E71D0039224C /* Extensions+Bundle.swift */; };
+		998DF2372838E76D0039224C /* Naver.plist in Resources */ = {isa = PBXBuildFile; fileRef = 998DF2362838E76D0039224C /* Naver.plist */; };
 		99901761281E45DB005E30D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99901760281E45DB005E30D8 /* AppDelegate.swift */; };
 		99901763281E45DB005E30D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99901762281E45DB005E30D8 /* SceneDelegate.swift */; };
 		99901768281E45DB005E30D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99901766281E45DB005E30D8 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 		9911C7F02829636300A3C5C4 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		99840737282022D500C8B9D8 /* SelectedBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookCell.swift; sourceTree = "<group>"; };
 		998D0602282AB45B004D51C0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		998DF2342838E71D0039224C /* Extensions+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Bundle.swift"; sourceTree = "<group>"; };
+		998DF2362838E76D0039224C /* Naver.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Naver.plist; sourceTree = "<group>"; };
 		9990175D281E45DB005E30D8 /* MiddleP-Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiddleP-Books.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99901760281E45DB005E30D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99901762281E45DB005E30D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,14 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		998DF2332838E6D70039224C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				998DF2342838E71D0039224C /* Extensions+Bundle.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		99901754281E45DB005E30D8 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +127,8 @@
 				99563E7F2826A59200EF6833 /* Cell */,
 				99563E802826A59B00EF6833 /* Controller */,
 				998D0601282AB441004D51C0 /* Util */,
+				998DF2332838E6D70039224C /* Extensions */,
+				998DF2362838E76D0039224C /* Naver.plist */,
 			);
 			path = "MiddleP-Books";
 			sourceTree = "<group>";
@@ -184,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9990176D281E45DE005E30D8 /* LaunchScreen.storyboard in Resources */,
+				998DF2372838E76D0039224C /* Naver.plist in Resources */,
 				9990176A281E45DE005E30D8 /* Assets.xcassets in Resources */,
 				99901768281E45DB005E30D8 /* Main.storyboard in Resources */,
 			);
@@ -203,6 +218,7 @@
 				99840738282022D500C8B9D8 /* SelectedBookCell.swift in Sources */,
 				998D0603282AB45B004D51C0 /* ImageLoader.swift in Sources */,
 				99901777281E53B8005E30D8 /* BookCell.swift in Sources */,
+				998DF2352838E71D0039224C /* Extensions+Bundle.swift in Sources */,
 				9911C7F12829636300A3C5C4 /* APIService.swift in Sources */,
 				99901779281E5513005E30D8 /* BookListViewController.swift in Sources */,
 			);

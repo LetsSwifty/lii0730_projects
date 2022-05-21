@@ -80,7 +80,7 @@ extension MyPageViewController: UITableViewDataSource {
         
         let book = self.bookList[indexPath.row]
         cell.titleLabel.text = book.title
-        cell.bookImageView.image = ImageLoader.Load(url: book.image)
+        cell.bookImageView.image = ImageLoader.load(url: book.image)
         cell.deleteButton.tag = indexPath.row
         cell.deleteButton.addTarget(self, action: #selector(OnClick(_:)), for: .touchUpInside)
         
@@ -94,7 +94,7 @@ extension MyPageViewController {
         let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
             guard let self = self else { return }
             var deletedBook = self.bookList.remove(at: sender.tag)
-            deletedBook.IsGood = false
+            deletedBook.isGood = false
 
             self.delegate?.Deleted(book: deletedBook)
             self.tableView.reloadData()
