@@ -5,7 +5,6 @@
 //  Created by LeeHsss on 2022/05/01.
 //
 
-import Foundation
 import UIKit
 
 protocol BookCellDelegate {
@@ -19,10 +18,11 @@ class BookCell: UITableViewCell {
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var starButton: UIButton!
     
-    var item: Book?
-    var row: Int?
+    var item: Book? // 선택한 책 정보
+    var row: Int? // 선택한 책 cell의 row
     var delegate: BookCellDelegate?
     
+    // 책 정보 세팅
     func setBook(for book: Book) {
         self.titleLabel.text = book.title
         self.descLabel.text = book.description
@@ -33,6 +33,7 @@ class BookCell: UITableViewCell {
         self.starButton.setImage(self.item!.isGood ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)
     }
     
+    // star 버튼 클릭했을 때
     @IBAction func onSelect(_ sender: UIButton) {
         self.item?.isGood.toggle()
         self.starButton.setImage(self.item!.isGood ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)

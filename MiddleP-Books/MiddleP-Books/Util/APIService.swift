@@ -9,8 +9,8 @@ import Foundation
 
 class APIService {
     
-    static let NAVER_CLIENT_ID: String = "s64EHrNdE4CMpb9EMT9v"
-    static let NAVER_CLIETN_SECRET: String = "hQeA9wJJlL"
+    static let NAVER_CLIENT_ID: String = Bundle.main.client_id
+    static let NAVER_CLIETN_SECRET: String = Bundle.main.client_secret
     
     static func makeAPIRequest(keyword: String) -> URLRequest {
         let EncodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!

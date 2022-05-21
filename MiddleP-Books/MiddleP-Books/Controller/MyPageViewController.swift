@@ -89,6 +89,7 @@ extension MyPageViewController: UITableViewDataSource {
 }
 
 extension MyPageViewController {
+    // 삭제 버튼 클릭했을때 호출
     @objc func OnClick(_ sender: UIButton) {
         let alert = UIAlertController(title: "알림", message: "삭제하시겠습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in

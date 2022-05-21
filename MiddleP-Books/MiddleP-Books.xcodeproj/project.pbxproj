@@ -123,12 +123,12 @@
 				99901769281E45DE005E30D8 /* Assets.xcassets */,
 				9990176B281E45DE005E30D8 /* LaunchScreen.storyboard */,
 				9990176E281E45DE005E30D8 /* Info.plist */,
+				998DF2362838E76D0039224C /* Naver.plist */,
 				99563E7E2826A58C00EF6833 /* Model */,
 				99563E7F2826A59200EF6833 /* Cell */,
 				99563E802826A59B00EF6833 /* Controller */,
 				998D0601282AB441004D51C0 /* Util */,
 				998DF2332838E6D70039224C /* Extensions */,
-				998DF2362838E76D0039224C /* Naver.plist */,
 			);
 			path = "MiddleP-Books";
 			sourceTree = "<group>";

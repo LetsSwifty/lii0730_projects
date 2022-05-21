@@ -5,8 +5,8 @@
 //  Created by LeeHsss on 2022/05/02.
 //
 
-import Foundation
 import UIKit
+import SnapKit
 
 class SelectedBookCell: UITableViewCell {
     
