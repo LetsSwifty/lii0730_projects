@@ -9,7 +9,7 @@ import UIKit
 
 class APIService {
     static let GET_URL: String = "https://api.unsplash.com/photos"
-    static let ACCESS_KEY: String = "93mdZyavQRD_jmmQq26XUiWkHbG5PBcV6z4C4b3Lm8o"
+    static let ACCESS_KEY: String = Bundle.main.client_id
     static var Image: [ImageResponse] = []
     
     static func GET_IMAGE() {
