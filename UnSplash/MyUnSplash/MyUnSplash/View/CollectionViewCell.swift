@@ -11,7 +11,7 @@ import SnapKit
 class CollectionViewCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -20,7 +20,6 @@ class CollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         contentView.addSubview(imageView)
-        contentView.clipsToBounds = true
         
         imageView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalTo(contentView)

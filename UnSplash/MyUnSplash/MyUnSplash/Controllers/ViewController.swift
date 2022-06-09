@@ -10,6 +10,8 @@ import SnapKit
 
 class ViewController: UIViewController {
     
+    private var current_Page = 1
+    private let total_Page = 10
     private var ImageList: [ImageResponse] = []
     
     lazy var collectionView: UICollectionView = {
@@ -28,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetView()
-        SetImage()
+        SetImage(currentPage: self.current_Page)
     }
     
     private func SetView() {
@@ -38,33 +40,47 @@ class ViewController: UIViewController {
         }
     }
     
-    private func SetImage() {
-        APIService.GET_IMAGE { [weak self] imageList in
+    private func SetImage(currentPage: Int) {
+        APIService.GET_IMAGE(page: currentPage) { [weak self] imageList in
+            print("Current Page:: \(currentPage)")
             guard let self = self else { return }
-            self.ImageList = imageList
+            DispatchQueue.main.async {
+                if imageList.count > 0 {
+                    self.ImageList.insert(contentsOf: imageList, at: self.ImageList.count)
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
 }
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
         
         let imageUrl: String = self.ImageList[indexPath.item].urls.regular
-        cell.imageView.image = ImageLoader.load(url: imageUrl)
         
-        cell.contentView.backgroundColor = .systemBlue
+        DispatchQueue.main.async {
+            cell.imageView.image = ImageLoader.load(url: imageUrl)
+        }
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ImageList.count
+        return self.ImageList.count
     }
-}
-
-extension ViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // 페이징 처리 위치
+        if self.current_Page < self.total_Page && indexPath.row == self.ImageList.count - 1 {
+            self.current_Page = self.current_Page + 1
+            self.SetImage(currentPage: self.current_Page)
+        }
+    }
+}
