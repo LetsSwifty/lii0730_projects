@@ -64,14 +64,15 @@ extension ViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        
-        let imageUrl: String = self.ImageList[indexPath.item].urls.regular
+        let imageUrl: String = self.ImageList[indexPath.item].urls.thumb
         
         DispatchQueue.main.async {
             ImageLoader.load(url: imageUrl) { loadImage in
-                cell.imageView.image = loadImage
+                DispatchQueue.main.async {
+                    cell.imageView.image = loadImage
+                    cell.loadingView.stopAnimating()
+                }
             }
-            cell.loadingView.stopAnimating()
         }
         
         return cell
