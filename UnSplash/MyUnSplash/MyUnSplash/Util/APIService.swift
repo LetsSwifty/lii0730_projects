@@ -8,7 +8,7 @@
 import UIKit
 
 class APIService {
-    static let per_page: Int = 30
+    static let PER_PAGE: Int = 30
     static let GET_URL: String = "https://api.unsplash.com/photos"
     static let CLIENT_ID: String = Bundle.main.client_id
     
@@ -16,7 +16,7 @@ class APIService {
         var urlComponents: URLComponents = URLComponents(string: APIService.GET_URL)!
         urlComponents.queryItems = [
             URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "per_page", value: "\(APIService.per_page)")
+            URLQueryItem(name: "per_page", value: "\(APIService.PER_PAGE)")
         ]
 
         var urlRequest: URLRequest = URLRequest(url: urlComponents.url!)

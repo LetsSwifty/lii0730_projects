@@ -16,12 +16,24 @@ class CollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    lazy var loadingView: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.startAnimating()
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         contentView.addSubview(imageView)
+        contentView.addSubview(loadingView)
         
         imageView.snp.makeConstraints {
+            $0.leading.trailing.top.bottom.equalTo(contentView)
+        }
+        
+        loadingView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalTo(contentView)
         }
     }

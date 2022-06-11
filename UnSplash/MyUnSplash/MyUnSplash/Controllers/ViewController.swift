@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     private let total_Page = 10
     private var ImageList: [ImageResponse] = []
     
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical // 컬렉션뷰의 스크롤 방향 설정
@@ -24,11 +25,13 @@ class ViewController: UIViewController {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "ImageCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         SetView()
         SetImage(currentPage: self.current_Page)
     }
@@ -61,14 +64,19 @@ extension ViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        
         let imageUrl: String = self.ImageList[indexPath.item].urls.regular
         
         DispatchQueue.main.async {
-            cell.imageView.image = ImageLoader.load(url: imageUrl)
+            ImageLoader.load(url: imageUrl) { loadImage in
+                cell.imageView.image = loadImage
+            }
+            cell.loadingView.stopAnimating()
         }
         
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.ImageList.count
     }
@@ -77,8 +85,8 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // 페이징 처리 위치
-        if self.current_Page < self.total_Page && indexPath.row == self.ImageList.count - 1 {
+        // 페이징 처리
+        if self.current_Page < self.total_Page && indexPath.item == self.ImageList.count - 1 {
             self.current_Page = self.current_Page + 1
             self.SetImage(currentPage: self.current_Page)
         }
