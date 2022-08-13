@@ -48,9 +48,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1970-01-01 14:59:30" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgc-dp-Cyo" userLabel="날짜">
-                                            <rect key="frame" x="312.5" y="21" width="65" height="38"/>
+                                            <rect key="frame" x="307.5" y="21" width="70" height="38"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="65" id="tsc-KE-4Lh"/>
+                                                <constraint firstAttribute="width" constant="70" id="tsc-KE-4Lh"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="textColor"/>
@@ -69,6 +69,11 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="mgc-dp-Cyo" secondAttribute="bottom" constant="10" id="vUe-bf-Vi9"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contents" destination="RFz-l0-Evc" id="62l-wR-qQw"/>
+                                    <outlet property="regDate" destination="mgc-dp-Cyo" id="0bn-da-FkC"/>
+                                    <outlet property="subject" destination="sVV-dI-WX7" id="eNH-Ef-s4M"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="memoCellWithImage" rowHeight="80" id="KO5-ij-VDy" customClass="MemoCell" customModule="MyMemory" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="124.5" width="414" height="80"/>
@@ -93,10 +98,10 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1970-01-01 14:59:30" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E40-sb-o5L">
-                                            <rect key="frame" x="312.5" y="21" width="65" height="38"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022-08-05 14:59:30" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E40-sb-o5L">
+                                            <rect key="frame" x="307.5" y="21" width="70" height="38"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="65" id="s8o-VI-aD4"/>
+                                                <constraint firstAttribute="width" constant="70" id="s8o-VI-aD4"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="textColor"/>
@@ -127,6 +132,12 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="eSa-3D-Kz7" secondAttribute="trailing" constant="70" id="tyi-Z4-UVV"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contents" destination="eSa-3D-Kz7" id="64p-HB-psQ"/>
+                                    <outlet property="img" destination="6db-Tg-K5P" id="ouA-zC-xj0"/>
+                                    <outlet property="regDate" destination="E40-sb-o5L" id="Afa-HI-ii4"/>
+                                    <outlet property="subject" destination="HIe-In-o6H" id="cfZ-Zg-UNx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -147,12 +158,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hvS-IG-Wvp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="-9"/>
+            <point key="canvasLocation" x="139.13043478260872" y="-9.375"/>
         </scene>
         <!--메모 작성-->
         <scene sceneID="tQJ-Q1-daL">
             <objects>
-                <viewController id="j91-7f-jJJ" customClass="MemoFormVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoFormVC" id="j91-7f-jJJ" customClass="MemoFormVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XAW-Y9-2Ua">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,19 +198,31 @@
                     </view>
                     <navigationItem key="navigationItem" title="메모 작성" id="IuE-6F-fAZ">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="camera" id="DNJ-sz-uoQ"/>
-                            <barButtonItem title="저장" id="Ew3-zO-ZJL"/>
+                            <barButtonItem systemItem="camera" id="DNJ-sz-uoQ">
+                                <connections>
+                                    <action selector="pick:" destination="j91-7f-jJJ" id="cb6-3M-Fir"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="저장" id="Ew3-zO-ZJL">
+                                <connections>
+                                    <action selector="save:" destination="j91-7f-jJJ" id="ALV-8P-thX"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="contents" destination="prd-tf-oLJ" id="ktA-GI-A8h"/>
+                        <outlet property="preview" destination="MhQ-8N-rZt" id="olU-Zi-y5d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSx-oZ-C11" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957.97101449275374" y="-9.375"/>
+            <point key="canvasLocation" x="836" y="-9"/>
         </scene>
         <!--상세 화면-->
         <scene sceneID="Ws8-yA-10u">
             <objects>
-                <viewController title="상세 화면" id="aX1-dR-ZT6" customClass="MemoReadVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoRead" title="상세 화면" id="aX1-dR-ZT6" customClass="MemoReadVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RMk-ua-EmK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -241,6 +264,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="상세화면" id="wtj-xj-sLr"/>
+                    <connections>
+                        <outlet property="contents" destination="9Na-eI-eXc" id="RWr-7u-pdX"/>
+                        <outlet property="img" destination="vtV-S6-9NX" id="VtX-Jw-XQe"/>
+                        <outlet property="subject" destination="8I0-8k-wRG" id="aVS-xn-k5v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4t1-QN-62w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
